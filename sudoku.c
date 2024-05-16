@@ -52,6 +52,27 @@ void print_node(Node *n)
 
 int is_valid(Node *n)
 {
+   // Se ubica en una de las submatriz 3x3
+   for (int submatriz = 0 ; submatriz < 9 ; submatriz++)
+   {
+      // Comienza a recorrer los numeros del 1 al 9
+      for (int num = 1 ; num <= 9 ; num++)
+      {
+         int enSubmatriz = 0;
+         // Recorre la submatriz verificando si el numero esta
+         for(int p = 0 ; p < 9 ; p++)
+         {
+            // Se posiciona en la fila y columna de la submatriz
+            int i = 3 * (k / 3) + (p / 3);
+            int j = 3 * (k % 3) + (p % 3);
+
+            // Si el numero es igual al de pos en matriz y ya estaba antes
+            if (n->sudo[i][j] == num && enSubmatriz == 1) return 0;
+            else enSubmatriz = 1;
+         }
+      }
+      
+   }
 
     return 1;
 }
@@ -71,7 +92,8 @@ List *get_adj_nodes(Node *n)
                   Node *adjunto = copy(n);
                   adjunto->sudo[i][k] = j;
                   //print_node(adj);
-                  pushBack(list, adjunto);
+                  if (is_valid(adjunto))
+                     pushBack(list, adjunto);
                }
          }
       }

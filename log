@@ -110,3 +110,14 @@ Thu 16 May 2024 01:10:22 AM UTC:
  tests:  2|4
 total_score: 15/70
 5e453ed
+Thu 16 May 2024 02:57:34 AM UTC: 
+ sudoku.c | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+In file included from test.c:5:
+sudoku.c: In function ‘is_valid’:
+sudoku.c:66:26: error: ‘k’ undeclared (first use in this function)
+   66 |             int i = 3 * (k / 3) + (p / 3);
+      |                          ^
+sudoku.c:66:26: note: each undeclared identifier is reported only once for each function it appears in
+Compilation failed
+5fd61bc
