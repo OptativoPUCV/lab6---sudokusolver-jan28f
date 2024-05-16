@@ -84,7 +84,7 @@ List *get_adj_nodes(Node *n)
           int i=3*(k/3) + (p/3) ;
           int j=3*(k%3) + (p%3) ;
           printf("%d ",n->sudo[i][j]);
-          if(p%3 == 2) printf("\n");
+          if(p%3 == 2) printf("\n\n");
       }
    }
    
