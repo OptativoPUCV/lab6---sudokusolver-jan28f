@@ -80,7 +80,7 @@ List *get_adj_nodes(Node *n)
    for(p=0;p<9;p++){
        int i=3*(k/3) + (p/3) ;
        int j=3*(k%3) + (p%3) ;
-       printf("%d ",nodo->sudo[i][j]);
+       printf("%d ",n->sudo[i][j]);
        if(p%3 == 2) printf("\n");
    }
    
