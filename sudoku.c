@@ -63,8 +63,8 @@ int is_valid(Node *n)
          for(int p = 0 ; p < 9 ; p++)
          {
             // Se posiciona en la fila y columna de la submatriz
-            int i = 3 * (k / 3) + (p / 3);
-            int j = 3 * (k % 3) + (p % 3);
+            int i = 3 * (submatriz / 3) + (p / 3);
+            int j = 3 * (submatriz % 3) + (p % 3);
 
             // Si el numero es igual al de pos en matriz y ya estaba antes
             if (n->sudo[i][j] == num && enSubmatriz == 1) return 0;
