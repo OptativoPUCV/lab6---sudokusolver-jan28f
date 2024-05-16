@@ -70,8 +70,7 @@ List *get_adj_nodes(Node *n)
                {
                   Node *adj = copy(n);
                   adj->sudo[i][k] = j;
-                  if (is_valid(adj))
-                     pushBack(list, adj);
+                  pushBack(list, adj);
                }
          }
       }
@@ -90,7 +89,7 @@ List *get_adj_nodes(Node *n)
    }
    
    
-    return list;
+   return list;
 }
 
 
