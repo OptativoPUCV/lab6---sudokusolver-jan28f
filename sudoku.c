@@ -70,12 +70,11 @@ List *get_adj_nodes(Node *n)
                {
                   Node *adj = copy(n);
                   adj->sudo[i][k] = j;
+                  print_node(adj);
                   pushBack(list, adj);
                }
          }
       }
-
-   print_node(n);
    
    return list;
 }
