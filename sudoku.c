@@ -68,10 +68,10 @@ List *get_adj_nodes(Node *n)
          {
             for (int j = 1 ; j <= 9 ; j++)
                {
-                  Node *adj = copy(n);
-                  adj->sudo[i][k] = j;
-                  print_node(adj);
-                  pushBack(list, adj);
+                  Node *adjunto = copy(n);
+                  adjunto->sudo[i][k] = j;
+                  //print_node(adj);
+                  pushBack(list, adjunto);
                }
          }
       }
