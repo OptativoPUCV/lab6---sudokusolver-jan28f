@@ -228,3 +228,9 @@ test.c:226:13: error: assignment to ‘Node *’ from incompatible pointer type 
 cc1: all warnings being treated as errors
 Compilation failed
 bf8cd64
+Sat 18 May 2024 11:15:19 PM UTC: 
+ sudoku.c | 79 ++++++++++++++++++++++++++++++++--------------------------------
+ 1 file changed, 40 insertions(+), 39 deletions(-)
+ tests:  5|3
+total_score: 35/70
+c241756

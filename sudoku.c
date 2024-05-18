@@ -50,61 +50,62 @@ void print_node(Node *n)
     printf("\n");
 }
 
-typedef struct
+int is_valid(Node *n)
 {
-   int sudo[9][9];
-} Node;
+   
+   
 
-int is_valid(Node *n) {
-    // Verificar filas
-    for (int i = 0; i < 9; i++) {
-        int seen[10] = {0}; // Para números del 1 al 9
-        for (int j = 0; j < 9; j++) {
-            int num = n->sudo[i][j];
-            if (num != 0) { // Ignorar ceros, si es que los consideramos vacíos
-                if (seen[num]) {
-                    return 0; // Número repetido en la fila
-                }
-                seen[num] = 1;
+   for (int i = 0; i < 9; i++)
+   {
+      int numerosFila[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+      for (int k = 0 ; k < 9 ; k++)
+         {
+            if (n->sudo[i][k] != 0)
+            {
+               if (numerosFila[n->sudo[i][k]] == 1) return 0;
+               else numerosFila[n->sudo[i][k]] = 1;
             }
-        }
-    }
+         }
+   }
+      
 
-    // Verificar columnas
-    for (int j = 0; j < 9; j++) {
-        int seen[10] = {0}; // Para números del 1 al 9
-        for (int i = 0; i < 9; i++) {
-            int num = n->sudo[i][j];
-            if (num != 0) { // Ignorar ceros, si es que los consideramos vacíos
-                if (seen[num]) {
-                    return 0; // Número repetido en la columna
-                }
-                seen[num] = 1;
+   for (int i = 0; i < 9; i++)
+   {
+      int numerosColumna[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+      for (int k = 0 ; k < 9 ; k++)
+         {
+            if (n->sudo[k][i] != 0)
+            {
+               if (numerosColumna[n->sudo[k][i]] == 1) return 0;
+               else numerosColumna[n->sudo[k][i]] = 1;
             }
-        }
-    }
-
-    // Verificar submatrices de 3x3
-    for (int row = 0; row < 9; row += 3) {
-        for (int col = 0; col < 9; col += 3) {
-            int seen[10] = {0}; // Para números del 1 al 9
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    int num = n->sudo[row + i][col + j];
-                    if (num != 0) { // Ignorar ceros, si es que los consideramos vacíos
-                        if (seen[num]) {
-                            return 0; // Número repetido en la submatriz de 3x3
+         }
+   }
+      
+   
+   for (int i = 0; i < 9; i += 3)
+      {
+         for (int k = 0; k < 9; k += 3)
+            {
+               int numerosCuadrado[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+               for (int j = 0; j < 3; j++)
+                  for (int l = 0; l < 3; l++)
+                     {
+                        if (n->sudo[i+j][k+l] != 0)
+                        {
+                           if (numerosCuadrado[n->sudo[i+j][k+l]] == 1) return 0;
+                           else numerosCuadrado[n->sudo[i+j][k+l]] = 1;
                         }
-                        seen[num] = 1;
-                    }
-                }
+                        
+                     }
+               
             }
-        }
-    }
-
-    return 1; // Todo es válido
+         
+      }
+   
+   
+   return 1;
 }
-
 
 
 List *get_adj_nodes(Node *n)
