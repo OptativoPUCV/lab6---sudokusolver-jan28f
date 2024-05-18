@@ -53,7 +53,7 @@ void print_node(Node *n)
 int is_valid(Node *n)
 {
    int numerosFila[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-   int numerosColumna[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+   //int numerosColumna[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
    for (int i = 0; i < 9; i++)
       for (int k = 0 ; k < 9 ; k++)
