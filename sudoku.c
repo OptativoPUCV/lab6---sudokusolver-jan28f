@@ -75,6 +75,23 @@ int is_valid(Node *n)
          }
       }
    
+   for (int i = 0; i < 9; i += 3)
+      {
+         for (int k = 0; k < 9; k += 3)
+            {
+               int numerosCuadrado[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+               for (int j = 0; j < 3; j++)
+                  for (int l = 0; l < 3; l++)
+                     {
+                        if (n->sudo[i+j][k+l] != 0)
+                        {
+                           if (numerosCuadrado[n->sudo[i+j][k+l]] == 1) return 0;
+                           else numerosCuadrado[n->sudo[i+j][k+l]] = 1;
+                        }
+                     }
+            }
+      }
+   
    return 1;
 }
 
