@@ -50,40 +50,22 @@ void print_node(Node *n)
     printf("\n");
 }
 
-int is_valid(Node *n) {
-    int row_set[10] = {0};
-    int col_set[10] = {0};
-    int subgrid_set[10] = {0};
+int is_valid(Node *n)
+{
+   int numerosFila[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+   int numerosColumna[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-    for (int i = 0; i < 9; ++i) {
-        for (int j = 0; j < 9; ++j) {
-            int num = n->sudo[i][j];
-            if (num != 0) {
-                // Verificar fila
-                if (row_set[num]) {
-                    return 0;
-                }
-                row_set[num] = 1;
-
-                // Verificar columna
-                if (col_set[num]) {
-                    return 0;
-                }
-                col_set[num] = 1;
-
-                // Verificar submatriz
-                int subgrid_row = i / 3;
-                int subgrid_col = j / 3;
-                int subgrid_idx = subgrid_row * 3 + subgrid_col;
-                if (subgrid_set[subgrid_idx]) {
-                    return 0;
-                }
-                subgrid_set[subgrid_idx] = 1;
-            }
-        }
-    }
-
-    return 1;
+   for (int i = 0; i < 9; i++)
+      for (int k = 0 ; k < 9 ; k++)
+      {
+         if (n->sudo[i][k] != 0)
+         {
+            if (numerosFila[n->sudo[i][k]] == 1) return 0;
+            else numerosFila[n->sudo[i][k]] = 1;
+         }
+      }
+   
+   return 1;
 }
 
 

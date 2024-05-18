@@ -151,3 +151,14 @@ Sat 18 May 2024 11:02:12 PM UTC:
  tests:  2|4
 total_score: 15/70
 fb82050
+Sat 18 May 2024 11:03:12 PM UTC: 
+ sudoku.c | 40 +++++++++++-----------------------------
+ 1 file changed, 11 insertions(+), 29 deletions(-)
+In file included from test.c:5:
+sudoku.c: In function ‘is_valid’:
+sudoku.c:56:8: error: unused variable ‘numerosColumna’ [-Werror=unused-variable]
+   56 |    int numerosColumna[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+      |        ^~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+6abc4df
