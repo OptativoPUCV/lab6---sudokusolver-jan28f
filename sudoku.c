@@ -101,7 +101,6 @@ List *get_adj_nodes(Node *n)
       for (int k = 0 ; k < 9 ; k++)
       {
          if (n->sudo[i][k] == 0)
-         {
             for (int j = 1 ; j <= 9 ; j++)
                {
                   Node *adjunto = copy(n);
@@ -110,7 +109,6 @@ List *get_adj_nodes(Node *n)
                   if (is_valid(adjunto))
                      pushBack(list, adjunto);
                }
-         }
       }
    
    return list;
