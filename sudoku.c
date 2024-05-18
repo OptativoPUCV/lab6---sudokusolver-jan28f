@@ -87,9 +87,7 @@ int is_valid(Node *n)
             else numerosSubmatriz[n->sudo[i][j]] = 1;
          }
       }
-   }
-   print_node(n);
-   
+   }   
    return 1;
 }
 
