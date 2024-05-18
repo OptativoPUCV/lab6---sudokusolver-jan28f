@@ -91,6 +91,14 @@ int is_valid(Node *n)
    return 1;
 }
 
+int is_final(Node *n)
+{
+   for (int i = 0 ; i < 9 ; i++)
+      for (int k = 0 ; k < 9 ; k++)
+         if (n->sudo[i][k] == 0) return 0;
+
+   return 1;
+}
 
 List *get_adj_nodes(Node *n)
 {
@@ -104,7 +112,7 @@ List *get_adj_nodes(Node *n)
                {
                   Node *adjunto = copy(n);
                   adjunto->sudo[i][k] = j;
-                  if (is_valid(adjunto))
+                  if (is_valid(adjunto) && is_final(adjunto))
                      pushBack(list, adjunto);
                   else
                      free(adjunto);
@@ -114,18 +122,43 @@ List *get_adj_nodes(Node *n)
    return list;
 }
 
+/*
+.Implemente la función Node* DFS(Node* n, int* cont). Esta función realiza una búsqueda en profundidad a partir del nodo n. El algoritmo es el siguiente:
 
-int is_final(Node *n)
-{
-   for (int i = 0 ; i < 9 ; i++)
-      for (int k = 0 ; k < 9 ; k++)
-         if (n->sudo[i][k] == 0) return 0;
-   
-   return 1;
-}
+Si terminó de recorre el grafo sin encontrar una solución, retorne NULL.
+*/
 
 Node *DFS(Node *initial, int *cont)
 {
+   // Cree un stack S (pila) e inserte el nodo.
+   Stack *S = createStack();
+   push(S, initial);
+
+   // Mientras el stack S no se encuentre vacío:
+   while (!is_empty(S))
+   {
+      // a) Saque y elimine el primer nodo de S.
+      Node *n = top(S);
+      pop(S);
+
+      // b) Verifique si corresponde a un estado final, si es así retorne el nodo.
+      if (is_final(n)) return n;
+
+      // c) Obtenga la lista de nodos adyacentes al nodo.
+      List *list = get_adj_nodes(n);
+
+      // d) Agregue los nodos de la lista (uno por uno) al stack S.
+      Node *aux = first(list);
+      while (aux)
+      {
+         push(S, aux);
+         aux = next(list);
+      }
+      
+      // e) Libere la memoria usada por el nodo.
+      free(n);
+   }
+   
   return NULL;
 }
 
