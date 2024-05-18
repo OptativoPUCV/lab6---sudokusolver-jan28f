@@ -50,59 +50,38 @@ void print_node(Node *n)
     printf("\n");
 }
 
-int is_valid(Node *n)
-{
-   // Se ubica en una de las submatriz 3x3
-   for (int submatriz = 0 ; submatriz < 9 ; submatriz++)
-   {
-      // Comienza a recorrer los numeros del 1 al 9
-      for (int num = 1 ; num <= 9 ; num++)
-      {
-         int enSubmatriz = 0;
-         // Recorre la submatriz verificando si el numero esta
-         for(int p = 0 ; p < 9 ; p++)
-         {
-            // Se posiciona en la fila y columna de la submatriz
-            int i = 3 * (submatriz / 3) + (p / 3);
-            int j = 3 * (submatriz % 3) + (p % 3);
+int is_valid(Node *n) {
+    int row_set[10] = {0};
+    int col_set[10] = {0};
+    int subgrid_set[10] = {0};
 
-            // Si el numero es igual al de pos en matriz y ya estaba antes
-            if (n->sudo[i][j] == num) enSubmatriz++;
-            if (enSubmatriz > 1) return 0;
-         }
-      }
-   }
+    for (int i = 0; i < 9; ++i) {
+        for (int j = 0; j < 9; ++j) {
+            int num = n->sudo[i][j];
+            if (num != 0) {
+                // Verificar fila
+                if (row_set[num]) {
+                    return 0;
+                }
+                row_set[num] = 1;
 
-   int numero[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-   int contador = 0;
-   // Se recorren los numeros del 1 al 9
-   for (int i = 0 ; i < 9 ; i++)
-   {
-      for (int k = 0 ; i < 9 ; i++)
-      {
-         for (int l = 0 ; l < 9 ; l++)
-         {
-            // Si el numero esta en la matriz
-            if (n->sudo[i][k] == numero[l]) contador++;
-         }
-      }
-      if (contador > 1) return 0;
-   }
+                // Verificar columna
+                if (col_set[num]) {
+                    return 0;
+                }
+                col_set[num] = 1;
 
-   contador = 0;
-   // Se recorren los numeros del 1 al 9
-   for (int i = 0 ; i < 9 ; i++)
-   {
-      for (int k = 0 ; i < 9 ; i++)
-      {
-         for (int l = 0 ; l < 9 ; l++)
-         {
-            // Si el numero esta en la matriz
-            if (n->sudo[k][l] == numero[l]) contador++;
-         }
-      }
-      if (contador > 1) return 0;
-   }
+                // Verificar submatriz
+                int subgrid_row = i / 3;
+                int subgrid_col = j / 3;
+                int subgrid_idx = subgrid_row * 3 + subgrid_col;
+                if (subgrid_set[subgrid_idx]) {
+                    return 0;
+                }
+                subgrid_set[subgrid_idx] = 1;
+            }
+        }
+    }
 
     return 1;
 }
