@@ -53,7 +53,7 @@ void print_node(Node *n)
 int is_valid(Node *n)
 {
    int numerosFila[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-   //int numerosColumna[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+   int numerosColumna[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
    for (int i = 0; i < 9; i++)
       for (int k = 0 ; k < 9 ; k++)
@@ -62,6 +62,16 @@ int is_valid(Node *n)
          {
             if (numerosFila[n->sudo[i][k]] == 1) return 0;
             else numerosFila[n->sudo[i][k]] = 1;
+         }
+      }
+
+   for (int i = 0; i < 9; i++)
+      for (int k = 0 ; k < 9 ; k++)
+      {
+         if (n->sudo[k][i] != 0)
+         {
+            if (numerosColumna[n->sudo[k][i]] == 1) return 0;
+            else numerosColumna[n->sudo[k][i]] = 1;
          }
       }
    
