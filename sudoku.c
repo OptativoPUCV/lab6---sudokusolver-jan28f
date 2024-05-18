@@ -73,6 +73,37 @@ int is_valid(Node *n)
       }
    }
 
+   int numero[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+   int contador = 0;
+   // Se recorren los numeros del 1 al 9
+   for (int i = 0 ; i < 9 ; i++)
+   {
+      for (int k = 0 ; i < 9 ; i++)
+      {
+         for (int l = 0 ; l < 9 ; l++)
+         {
+            // Si el numero esta en la matriz
+            if (n->sudo[i][k] == numero[l]) contador++;
+         }
+      }
+      if (contador > 1) return 0;
+   }
+
+   contador = 0;
+   // Se recorren los numeros del 1 al 9
+   for (int i = 0 ; i < 9 ; i++)
+   {
+      for (int k = 0 ; i < 9 ; i++)
+      {
+         for (int l = 0 ; l < 9 ; l++)
+         {
+            // Si el numero esta en la matriz
+            if (n->sudo[k][l] == numero[l]) contador++;
+         }
+      }
+      if (contador > 1) return 0;
+   }
+
     return 1;
 }
 
