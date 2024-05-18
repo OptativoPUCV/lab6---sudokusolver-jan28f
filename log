@@ -180,3 +180,51 @@ Sat 18 May 2024 11:05:53 PM UTC:
  tests:  2|4
 total_score: 15/70
 822c443
+Sat 18 May 2024 11:11:44 PM UTC: 
+ sudoku.c | 70 ++++++++++++++++++++++++++++++++++++----------------------------
+ 1 file changed, 40 insertions(+), 30 deletions(-)
+In file included from test.c:5:
+sudoku.c:56:3: error: conflicting types for ‘Node’; have ‘struct <anonymous>’
+   56 | } Node;
+      |   ^~~~
+sudoku.c:8:3: note: previous declaration of ‘Node’ with type ‘Node’
+    8 | } Node;
+      |   ^~~~
+sudoku.c: In function ‘get_adj_nodes’:
+sudoku.c:121:40: error: passing argument 1 of ‘copy’ from incompatible pointer type [-Werror=incompatible-pointer-types]
+  121 |                   Node *adjunto = copy(n);
+      |                                        ^
+      |                                        |
+      |                                        Node *
+sudoku.c:16:18: note: expected ‘Node *’ but argument is of type ‘Node *’
+   16 | Node *copy(Node *n)
+      |            ~~~~~~^
+sudoku.c:121:35: error: initialization of ‘Node *’ from incompatible pointer type ‘Node *’ [-Werror=incompatible-pointer-types]
+  121 |                   Node *adjunto = copy(n);
+      |                                   ^~~~
+test.c: In function ‘adj_test1’:
+test.c:59:21: error: initialization of ‘Node *’ from incompatible pointer type ‘Node *’ [-Werror=incompatible-pointer-types]
+   59 |     Node* initial = read_file("s12a.txt");
+      |                     ^~~~~~~~~
+test.c: In function ‘test_isvalid’:
+test.c:108:21: error: initialization of ‘Node *’ from incompatible pointer type ‘Node *’ [-Werror=incompatible-pointer-types]
+  108 |     Node* initial = read_file("s12a.txt");
+      |                     ^~~~~~~~~
+test.c: In function ‘test_mod_adj’:
+test.c:152:21: error: initialization of ‘Node *’ from incompatible pointer type ‘Node *’ [-Werror=incompatible-pointer-types]
+  152 |     Node* initial = read_file("s12a.txt");
+      |                     ^~~~~~~~~
+test.c: In function ‘test_isfinal’:
+test.c:178:21: error: initialization of ‘Node *’ from incompatible pointer type ‘Node *’ [-Werror=incompatible-pointer-types]
+  178 |     Node* initial = read_file("s12a.txt");
+      |                     ^~~~~~~~~
+test.c: In function ‘test_dfs’:
+test.c:203:21: error: initialization of ‘Node *’ from incompatible pointer type ‘Node *’ [-Werror=incompatible-pointer-types]
+  203 |     Node* initial = read_file("s12a.txt");
+      |                     ^~~~~~~~~
+test.c:226:13: error: assignment to ‘Node *’ from incompatible pointer type ‘Node *’ [-Werror=incompatible-pointer-types]
+  226 |     initial = read_file("s12a.txt");
+      |             ^
+cc1: all warnings being treated as errors
+Compilation failed
+bf8cd64
