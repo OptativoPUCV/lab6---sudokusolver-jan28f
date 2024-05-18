@@ -91,14 +91,6 @@ int is_valid(Node *n)
    return 1;
 }
 
-int is_final(Node *n)
-{
-   for (int i = 0 ; i < 9 ; i++)
-      for (int k = 0 ; k < 9 ; k++)
-         if (n->sudo[i][k] == 0) return 0;
-
-   return 1;
-}
 
 List *get_adj_nodes(Node *n)
 {
@@ -112,14 +104,21 @@ List *get_adj_nodes(Node *n)
                {
                   Node *adjunto = copy(n);
                   adjunto->sudo[i][k] = j;
-                  if (is_valid(adjunto) && is_final(adjunto))
+                  //if (is_valid(adjunto))
                      pushBack(list, adjunto);
-                  else
-                     free(adjunto);
                }
       }
    
    return list;
+}
+
+int is_final(Node *n)
+{
+   for (int i = 0 ; i < 9 ; i++)
+      for (int k = 0 ; k < 9 ; k++)
+         if (n->sudo[i][k] == 0) return 0;
+   
+   return 1;
 }
 
 /*
