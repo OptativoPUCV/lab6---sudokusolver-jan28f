@@ -67,11 +67,10 @@ int is_valid(Node *n)
             int j = 3 * (submatriz % 3) + (p % 3);
 
             // Si el numero es igual al de pos en matriz y ya estaba antes
-            if (n->sudo[i][j] == num && enSubmatriz == 1) return 0;
-            else enSubmatriz = 1;
+            if (n->sudo[i][j] == num) enSubmatriz++;
+            if (enSubmatriz > 1) return 0;
          }
       }
-      
    }
 
     return 1;
