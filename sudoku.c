@@ -52,57 +52,43 @@ void print_node(Node *n)
 
 int is_valid(Node *n)
 {
-   
-   
-
    for (int i = 0; i < 9; i++)
    {
-      int numerosFila[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+      int numerosFila[10] = {0};
       for (int k = 0 ; k < 9 ; k++)
-         {
             if (n->sudo[i][k] != 0)
             {
                if (numerosFila[n->sudo[i][k]] == 1) return 0;
                else numerosFila[n->sudo[i][k]] = 1;
             }
-         }
    }
-      
 
    for (int i = 0; i < 9; i++)
    {
-      int numerosColumna[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+      int numerosColumna[10] = {0};
       for (int k = 0 ; k < 9 ; k++)
+         if (n->sudo[k][i] != 0)
          {
-            if (n->sudo[k][i] != 0)
-            {
-               if (numerosColumna[n->sudo[k][i]] == 1) return 0;
-               else numerosColumna[n->sudo[k][i]] = 1;
-            }
+            if (numerosColumna[n->sudo[k][i]] == 1) return 0;
+            else numerosColumna[n->sudo[k][i]] = 1;
          }
    }
-      
-   
-   for (int i = 0; i < 9; i += 3)
+
+   for (int submatriz = 0 ; submatriz < 9 ; submatriz++)
+   {
+      int numerosSubmatriz[10] = {0};
+      int k=4,p; 
+      for(int p = 0; p < 9; p++)
       {
-         for (int k = 0; k < 9; k += 3)
-            {
-               int numerosCuadrado[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-               for (int j = 0; j < 3; j++)
-                  for (int l = 0; l < 3; l++)
-                     {
-                        if (n->sudo[i+j][k+l] != 0)
-                        {
-                           if (numerosCuadrado[n->sudo[i+j][k+l]] == 1) return 0;
-                           else numerosCuadrado[n->sudo[i+j][k+l]] = 1;
-                        }
-                        
-                     }
-               
-            }
-         
+         int i = 3 * (submatriz / 3) + (p / 3);
+         int j = 3 * (submatriz % 3) + (p % 3);
+         if (n->sudo[i][j] != 0)
+         {
+            if (numerosSubmatriz[n->sudo[i][j]] == 1) return 0;
+            else numerosSubmatriz[n->sudo[i][j]] = 1;
+         }
       }
-   
+   }
    
    return 1;
 }
