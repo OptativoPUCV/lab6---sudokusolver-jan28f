@@ -130,7 +130,7 @@ Node *DFS(Node *initial, int *cont)
    Stack *stack = createStack();
    push(stack, initial);
 
-   while (stack != NULL)
+   while (top(pilaNodos) != NULL)
    {
       Node *nodo = top(stack);
       pop(stack);

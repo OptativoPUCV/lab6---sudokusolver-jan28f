@@ -462,3 +462,14 @@ Sun 19 May 2024 12:59:58 AM UTC:
  1 file changed, 1 insertion(+), 1 deletion(-)
  tests:  0|0
 406e81a
+Sun 19 May 2024 01:02:02 AM UTC: 
+ sudoku.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:5:
+sudoku.c: In function ‘DFS’:
+sudoku.c:133:15: error: ‘pilaNodos’ undeclared (first use in this function)
+  133 |    while (top(pilaNodos) != NULL)
+      |               ^~~~~~~~~
+sudoku.c:133:15: note: each undeclared identifier is reported only once for each function it appears in
+Compilation failed
+7e48630
