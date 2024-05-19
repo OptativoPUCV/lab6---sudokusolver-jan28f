@@ -108,7 +108,11 @@ List *get_adj_nodes(Node *n)
                      Node *adjunto = copy(n);
                      adjunto->sudo[i][k] = j;
                      if (is_valid(adjunto))
+                     {
+                        print_node(adjunto);
                         pushBack(list, adjunto);
+                     }
+                        
                   }
             if (a == 1) break;
          }
