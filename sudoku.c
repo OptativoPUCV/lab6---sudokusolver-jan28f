@@ -114,9 +114,8 @@ List *get_adj_nodes(Node *n)
                      }
                         
                   }
-            if (a == 1) break;
+            if (a == 1) return list;
          }
-      if (a == 1) break;
    }
       
    
