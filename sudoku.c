@@ -116,7 +116,6 @@ List *get_adj_nodes(Node *n)
 
 int is_final(Node *n)
 {
-   print_node(n);   
    for (int i = 0 ; i <= 8 ; i++)
       for (int k = 0 ; k <= 8 ; k++)
          if (n->sudo[i][k] == 0) return 0;
