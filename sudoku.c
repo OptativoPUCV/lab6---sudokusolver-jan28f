@@ -134,7 +134,7 @@ Node *DFS(Node *initial, int *cont)
    {
       Node *nodo = top(stack);
       pop(stack);
-      if (is_final(nodo)) return nodo;
+      if (nodo != NULL && is_final(nodo)) return nodo;
 
       List *adjuntos = get_adj_nodes(nodo);
       Node *nodoAdjunto = first(adjuntos);
