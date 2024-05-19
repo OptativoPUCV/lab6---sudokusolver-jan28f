@@ -142,9 +142,7 @@ Node *DFS(Node *initial, int *cont)
          nodoAdjunto = next(adjuntos);
       }
       free(nodo);
-   }
-   free(stack);
-   
+   }   
    return NULL;
 }
 
