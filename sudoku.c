@@ -153,6 +153,7 @@ Node *DFS(Node *initial, int *cont)
       }
       free(nodo);
    }
+   free(stack);
    
    return NULL;
 }
