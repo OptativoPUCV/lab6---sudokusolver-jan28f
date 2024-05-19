@@ -106,10 +106,9 @@ List *get_adj_nodes(Node *n)
                   obtenidos = 1;
                   Node *adjunto = copy(n);
                   adjunto->sudo[i][k] = j;
-                  if (is_valid(adjunto))
-                     pushBack(list, adjunto);
+                  if (is_valid(adjunto)) pushBack(list, adjunto);
                }
-            if (obtenidos == 1) return list;
+            if (obtenidos) return list;
          }
    
    return list;
@@ -124,16 +123,38 @@ int is_final(Node *n)
    return 1;
 }
 
-/*
-.Implemente la función Node* DFS(Node* n, int* cont). Esta función realiza una búsqueda en profundidad a partir del nodo n. El algoritmo es el siguiente:
-
-Si terminó de recorre el grafo sin encontrar una solución, retorne NULL.
-*/
-
 Node *DFS(Node *initial, int *cont)
 {
+   /*
+   Mientras el stack S no se encuentre vacío:
+
+
+   d) Agregue los nodos de la lista (uno por uno) al stack S.
+
+   e) Libere la memoria usada por el nodo.
+
+   Si terminó de recorre el grafo sin encontrar una solución, retorne NULL.
+   */
+   Stack *stack = createStack();
+   push(stack, initial);
+
+   while (stack != NULL)
+   {
+      Node *nodo = top(stack);
+      pop(stack);
+      if (is_final(nodo)) return nodo;
+
+      List *adjuntos = get_adj_nodes(nodo);
+      Node *nodoAdjunto = first(adjuntos);
+      while (nodoAdjunto != NULL)
+      {
+         push(stack, nodoAdjunto);
+         nodoAdjunto = next(adjuntos);
+      }
+      free(nodo);
+   }
    
-  return NULL;
+   return NULL;
 }
 
 /*
@@ -148,27 +169,3 @@ int main( int argc, char *argv[] ){
 
   return 0;
 }*/
-
-/*
-List *get_adj_nodes(Node *n)
-{
-    List* list=createList();
-
-   for (int i = 0 ; i < 9 ; i++)
-      for (int k = 0 ; k < 9 ; k++)
-      {
-         if (n->sudo[i][k] == 0)
-         {
-            for (int j = 1 ; j <= 9 ; j++)
-               {
-                  Node *adj = copy(n);
-                  adj->sudo[i][k] = j;
-                  if (is_valid(adj))
-                     pushBack(list, adj);
-               }
-         }
-      }
-   
-    return list;
-}
-*/
