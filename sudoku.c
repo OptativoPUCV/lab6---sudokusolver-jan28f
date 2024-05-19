@@ -125,16 +125,6 @@ int is_final(Node *n)
 
 Node *DFS(Node *initial, int *cont)
 {
-   /*
-   Mientras el stack S no se encuentre vacío:
-
-
-   d) Agregue los nodos de la lista (uno por uno) al stack S.
-
-   e) Libere la memoria usada por el nodo.
-
-   Si terminó de recorre el grafo sin encontrar una solución, retorne NULL.
-   */
    Stack *stack = createStack();
    push(stack, initial);
 
